@@ -1,11 +1,32 @@
 
+import axios from 'axios';
 import './App.css'
 import LandingBody from './components/LandingBody'
 import Navbar from './components/Navbar'
 import React, { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
+import Preloader from './components/Preloader';
 
 function App() {
+  const [loading,setLoading]=useState(1);
+
+  const webData = async () => {
+    try {
+      const response = await axios.get('https://sameetpisal.vercel.app/'); 
+      const response2 = await axios.get('https://sameetpisal.vercel.app/'); 
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    } catch (err) {
+      console.log(err)
+     
+    }
+  };
+
+  useEffect(() => {
+    webData();
+  }, []);
+
   const [showButton, setShowButton] = useState(false);
 
   // Function to handle scroll event
@@ -33,8 +54,9 @@ function App() {
 
   return (
     <>
-    
-    <LandingBody/>
+ <Preloader loading={loading} />
+ <Navbar  loading={loading} />
+    <LandingBody  />
     {showButton && (
         <button
           onClick={scrollToTop}
