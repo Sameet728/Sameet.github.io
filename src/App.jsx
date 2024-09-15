@@ -6,8 +6,10 @@ import Navbar from './components/Navbar'
 import React, { useState, useEffect } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 import Preloader from './components/Preloader';
+import Footer from './components/Footer';
 
 function App() {
+  const [darkmode,setDarkmode]=useState(0);
   const [loading,setLoading]=useState(1);
 
   const webData = async () => {
@@ -17,6 +19,8 @@ function App() {
       setTimeout(() => {
         setLoading(false);
       }, 2000);
+      const instaclone = await axios.get('https://instagram-clone-7akg.onrender.com'); 
+      const Airbnb = await axios.get('https://airbnb-1rcz.onrender.com'); 
     } catch (err) {
       console.log(err)
      
@@ -55,8 +59,9 @@ function App() {
   return (
     <>
  <Preloader loading={loading} />
- <Navbar  loading={loading} />
-    <LandingBody  />
+ <Navbar  loading={loading} darkmode={darkmode} setDarkmode={setDarkmode} />
+    <LandingBody darkmode={darkmode}  />
+    <Footer darkmode={darkmode}/>
     {showButton && (
         <button
           onClick={scrollToTop}

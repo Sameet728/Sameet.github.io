@@ -1,9 +1,9 @@
 import React from 'react'
 
-function AboutMe() {
+function AboutMe({darkmode}) {
   return (
     <>
-      <div id='about' className=' sm:h-[90vh] pt-20 pl-2 pr-2 sm:pl-20 sm:pr-20'>
+      <div id='about' className={`${darkmode ? "bg-gray-950 text-gray-50":""} sm:h-[90vh] pt-20 pl-2 pr-2 sm:pl-20 sm:pr-20`}>
         <div className='flex flex-col items-center gap-2'>
           <h2 id='animation' className='text-1/2xl text-gray-500'>Get To Know More</h2>
           <h2 id='animation' className='text-4xl font-semibold'>About Me</h2>
